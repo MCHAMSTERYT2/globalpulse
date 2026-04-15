@@ -41,7 +41,7 @@ services:
     
   redis-rest:
     build:
-      context: docker
+      context: .
       dockerfile: Dockerfile.redis-rest
     image: worldmonitor-redis-rest:latest
     container_name: worldmonitor-redis-rest
