@@ -53,3 +53,6 @@ services:
     depends_on:
       - redis
     restart: unless-stopped
+
+volumes:
+  redis-data:
