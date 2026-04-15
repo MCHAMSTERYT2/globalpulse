@@ -29,3 +29,12 @@ services:
     depends_on:
       app:
         condition: service_healthy
+
+
+  redis:
+    image: docker.io/redis:7-alpine
+    container_name: globalpulse-redis
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
