@@ -38,3 +38,18 @@ services:
     volumes:
       - redis-data:/data
     restart: unless-stopped
+    
+  redis-rest:
+    build:
+      context: docker
+      dockerfile: Dockerfile.redis-rest
+    image: worldmonitor-redis-rest:latest
+    container_name: worldmonitor-redis-rest
+    ports:
+      - "127.0.0.1:8079:80"
+    environment:
+      SRH_TOKEN: "${REDIS_TOKEN:-gp-local-token}"
+      SRH_CONNECTION_STRING: "redis://redis:6379"
+    depends_on:
+      - redis
+    restart: unless-stopped
